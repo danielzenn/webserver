@@ -8,6 +8,14 @@ const server = net.createServer((socket) => {
 
         socket.write('Servidor recibió: ' + data.toString())
     })
+
+    socket.on('close', () => {
+        console.log('Cliente desconectado')
+    })
+
+    socket.on('error', (error) => {
+        console.error('Error en socket: ', error.message)
+    })
 })
 
 server.listen(3000, () => {
