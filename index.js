@@ -6,7 +6,13 @@ const server = net.createServer((socket) => {
     socket.on('data', (data) => {
         console.log('Datos recibidos:', data.toString())
 
-        socket.write('Servidor recibió: ' + data.toString())
+        console.log('RAW REQUEST:\n' + data.toString())
+
+        socket.write('HTTP/1.1 200 OK\r\n' +
+                    'Content-Type: text/plain\r\n' +
+                    'Content-Length: 13\r\n' +
+                    '\r\n' +
+                    'Hello, World!')
     })
 
     socket.on('close', () => {
